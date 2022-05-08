@@ -62,7 +62,7 @@ const ProfileAppointment = () => {
     }
     getUser();
     getappointment();
-  }, [currentUser._id]);
+  }, [currentUser.accesstoken]);
   return (
     <div>
       <Navbar />

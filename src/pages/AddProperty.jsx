@@ -131,7 +131,7 @@ const AddProperty = () => {
 
                 {/* property area  */}
                 {(category === "house" || category === "apartment") && (
-                  <FormControl e={errors.propertyArea} t={touched.propertyArea} control="propertyInput" type="text" name="propertyArea" label="property area" placeholder="area in sq.km" />
+                  <FormControl e={errors.propertyArea} t={touched.propertyArea} control="propertyInput" type="text" name="propertyArea" label="property area" placeholder="area in sq.ft" />
                 )}
 
                 {/* property price  */}

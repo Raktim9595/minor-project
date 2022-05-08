@@ -70,7 +70,7 @@ const ImageSlider = (props) => {
                   <h5 className='text-xl font-medium capitalize hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors duration-200 ease-out cursor-pointer'>{data.propertyHeading}</h5>
                 </Link>
                 <div className='flex items-center space-x-3'>
-                  {data.category === "room" && (
+                  {(data.category === "room" || data.category === "shutter") && (
                     <div>
                       <p className="capitalize font-medium">Room</p>
                       <p>{data.rooms}</p>
