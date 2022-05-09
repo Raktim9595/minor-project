@@ -19,7 +19,7 @@ const ProfileSidebar = ({ user }) => {
       <div className='w-max mx-auto pt-5'>
         <img src={user.images[0].url} className="rounded-full object-cover h-20 w-20" />
       </div>
-      <div className='w-max mx-auto'>
+      <div className='w-52 mx-auto px-2 truncate'>
         <p>{user.email}</p>
       </div>
       <div className='mt-4'>

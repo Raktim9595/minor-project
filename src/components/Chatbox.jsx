@@ -21,8 +21,8 @@ const Chatbox = ({ propertyDetails, appointment }) => {
     a = propertyDetails.Postedby.pendingAppointment.filter(a => a?.requestingId === currentUser._id);
   }
   return (
-    <div>
-      <div className='p-1.5'>
+    <div className='h-96 pb-4'>
+      <div className='p-1.5 dark:text-gray-100'>
         <div className='w-max mx-auto mb-4'>
           <img src={propertyDetails.Postedby.images[0].url} alt="name" className='h-32 w-[6.5rem] rounded-md object-cover' />
         </div>
@@ -45,12 +45,18 @@ const Chatbox = ({ propertyDetails, appointment }) => {
         <div className='mt-4 px-2'>
           <div>
             <span>appintment date: </span>
-            <span>{appointment.appointmentDate.substring(0,10)}</span>
+            <span>{appointment.appointmentDate.substring(0, 10)}</span>
           </div>
           <div>
             <span>location: </span>
             <span>{appointment.location}</span>
           </div>
+          {appointment.appointmentTime && (
+            <div>
+              <span className='capitalize'>time: </span>
+              <span>{appointment.appointmentTime}</span>
+            </div>
+          )}
         </div>
       )}
       {!currentUser && (

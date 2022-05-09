@@ -43,12 +43,12 @@ const DetailsImageSLider = (props) => {
         <div className='basis-[70%] self-stretch rounded-r-md flex flex-col justify-between px-4'>
           <div className='flex justify-between items-center'>
             <Link to={`/allProperties/${propertyDetail._id}`}>
-              <div className='flex flex-col self-stretch space-y-2 w-[28rem]'>
+              <div className='flex flex-col space-y-2'>
                 <p className='text-sm -mb-4 text-gray-500 dark:text-gray-400 itlaic py-3'>{propertyDetail.category === "apartment" ? "An" : "A"} {propertyDetail.category} available at <span className='capitalize'>{propertyDetail.propertyLocation}</span></p>
                 <p className='capitalize text-xl -mt-8'>{propertyDetail.propertyHeading || propertyDetail.propertyName}</p>
                 <hr className='w-16' />
                 <div className='flex space-x-2 items-center text-sm text-gray-600 dark:text-gray-400 italic'>
-                  {propertyDetail.category === "room" && (
+                  {(propertyDetail.category === "room" || propertyDetail.category === "shutter") && (
                     <p>{propertyDetail.rooms} rooms</p>
                   )}
                   {propertyDetail.bedRoom && (

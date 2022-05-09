@@ -6,17 +6,17 @@ import { HeartIcon } from '@heroicons/react/outline';
 import { HeartIcon as HeartIconSolid, LocationMarkerIcon } from '@heroicons/react/solid';
 import { motion } from 'framer-motion';
 
-import { Navbar, DetailPageImages, MapBox, PropertyInfromation, OverViewBox, Chatbox, DeleteModal } from "../components"
+import { Navbar, DetailPageImages, MapBox, PropertyInfromation, OverViewBox, Chatbox, DeleteModal, ImageModal } from "../components"
 import { pageVariants } from '../data';
 import { publicRequest } from "../request";
-import { setExtraModal } from '../store/utilitiesSlice';
+import { setExtraModal, setModal } from '../store/utilitiesSlice';
 
 const PropertyDetail = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const id = location.pathname.split("/")[2];
   const [property, setProperty] = useState(undefined);
-  const { extraModalVisible } = useSelector(state => state.utils);
+  const { extraModalVisible, modalVisible } = useSelector(state => state.utils);
   const { currentUser } = useSelector(state => state.user);
   const [user, setUser] = useState([]);
   const [appointment, setAppointment] = useState([]);
@@ -43,7 +43,7 @@ const PropertyDetail = () => {
     if (currentUser) {
       getUser();
     }
-  }, [id]);
+  }, [id, currentUser]);
   console.log(appointment);
   if (property === undefined) return <div></div>;
   return (
@@ -82,15 +82,17 @@ const PropertyDetail = () => {
             </div>
             {
               appointment.length > 0 ? appointment.map(a => (
-                <div className="w-80 h-80 ring-[1px] ring-gray-500 rounded-md">
+                <div className="w-80 h-max ring-[1px] ring-gray-500 rounded-md">
                   <Chatbox propertyDetails={property} appointment={a} />
                 </div>
-              )): (
-                <div className="w-80 h-80 ring-[1px] ring-gray-500 rounded-md">
+              )) : (
+                <div>
                   {(currentUser && currentUser?._id === property.Postedby._id) ? (
-                    <div>you are the owner</div>
+                    <div></div>
                   ) : (
-                    <Chatbox propertyDetails={property} />
+                    <div className="w-80 h-max pb-3 ring-[1px] ring-gray-500 rounded-md">
+                      <Chatbox propertyDetails={property} />
+                    </div>
                   )}
                 </div>
               )
@@ -110,6 +112,9 @@ const PropertyDetail = () => {
       </div>
       {extraModalVisible && (
         <DeleteModal id={property._id} name={property.propertyHeading} content="do you really want to delete it" />
+      )}
+      {modalVisible && (
+        <ImageModal swiperData={property.images} />
       )}
     </motion.div>
   )

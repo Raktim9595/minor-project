@@ -12,17 +12,21 @@ const SetAppointmentBox = ({ appointment }) => {
   const { currentUser } = useSelector(state => state.user);
   const initialValues = {
     location: "",
-    date: ""
+    date: "",
+    time: "",
   };
   const validationSchema = Yup.object({
     location: Yup.string().required("required"),
-    date: Yup.date().required("required")
+    date: Yup.date().required("required"),
+    time: Yup.string().required("required"),
   });
   const handleSubmit = async (values, onSubmitProps) => {
     let newDate = new Date(values.date).toISOString();
+    console.log(values);
     const res = await publicRequest.post(`/property/${propertyId._id}/appointment/${appointment._id}`, {
       location: values.location,
-      date: newDate
+      date: newDate,
+      time: values.time
     }, {
       headers: {
         "token": `bearer ${currentUser.accesstoken}`
@@ -64,6 +68,7 @@ const SetAppointmentBox = ({ appointment }) => {
               <div className='flex flex-col -space-y-5'>
                 <FormControl e={errors.location} t={touched.location} control="input" type="text" name="location" label="location" placeholder="enter location" />
                 <FormControl e={errors.date} t={touched.date} control="input" type="date" name="date" label="date" placeholder="enter date" />
+                <FormControl e={errors.time} t={touched.time} control="input" type="time" name="time" label="time" placeholder="enter time" />
               </div>
               <div className='px-4 py-1.5 w-max ml-auto'>
                 <button type='submit' className='green--btn'>Set appointment</button>

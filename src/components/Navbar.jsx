@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { SearchIcon, SunIcon, MoonIcon } from "@heroicons/react/outline";
+import React, { useState, useEffect } from 'react';
+import { SearchIcon, SunIcon, MoonIcon, BellIcon } from "@heroicons/react/outline";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setTheme } from "../store/themeSlice";
 import Gharbhada from "../public/images/gharbhada.png";
 import { useNavigate, createSearchParams } from 'react-router-dom';
+import { publicRequest } from '../request';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,23 @@ const Navbar = () => {
     localStorage.setItem("rental-theme", "dark");
     dispatch(setTheme("dark"));
   };
+  const [user, setUser] = useState(undefined);
+  useEffect(() => {
+    async function getUser() {
+      const res = await publicRequest.get(`/user/${currentUser._id}`, {
+        headers: {
+          "token": `bearer ${currentUser.accesstoken}`
+        }
+      });
+      if (res.status === 200) {
+        setUser(res?.data);
+      }
+    };
+    if (currentUser) {
+      getUser();
+    }
+  }, []);
+  console.log(user);
   const handleSearch = (e) => {
     e.preventDefault();
     navigate({
@@ -60,6 +78,20 @@ const Navbar = () => {
         <Link to="/allProperties">
           <div className='navbar__links'>all properties</div>
         </Link>
+        {currentUser && (
+          <Link to="/profile/appointment">
+            <div className='relative'>
+              <BellIcon className='h-6 w-6' />
+              <div className='absolute -right-1 -top-1 h-4 z-30 w-4 rounded-full bg-blue-600 flex items-center justify-center'>
+                {user !== undefined && (
+                  <p className='text-xs text-white'>
+                    {user?.pendingAppointment?.length}
+                  </p>
+                )}
+              </div>
+            </div>
+          </Link>
+        )}
         <div className='flex items-center space-x-3'>
           {mode === "dark" ? (
             <div className='cursor-pointer transition-all duration-[400ms] ease-in'>

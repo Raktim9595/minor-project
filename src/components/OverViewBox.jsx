@@ -14,6 +14,9 @@ const OverViewBox = ({ propertyDetails }) => {
     <div className='ring-[1px] ring-gray-500 dark:ring-gray-200 rounded-sm px-7 py-4 pt-6 dark:text-gray-100'>
       <SmallInfoBox data={propertyDetails.rooms} text="Rooms" />
       {propertyDetails.category && (<SmallInfoBox data={propertyDetails.category} text="PropertyType" />)}
+      {propertyDetails.propertyFacing && (
+        <SmallInfoBox  data={propertyDetails.propertyFacing} text="Property Facing" />
+      )}
       <div>
         <h2 className="text-2xl capitalize mt-6">more information:</h2>
         {propertyDetails.additionalFeatures.split(".").map((value, index) => (

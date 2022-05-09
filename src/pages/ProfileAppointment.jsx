@@ -70,21 +70,21 @@ const ProfileAppointment = () => {
         <ProfileSidebar user={currentUser} />
         {foundUser === undefined ? <div></div> : (
           <div className='w-[1120px] flex space-x-2 min-h-[91vh] ml-64 bg-white shadow-inner ring-[1px] ring-gray-300 dark:ring-gray-700 dark:bg-neutral-800'>
-            <div className='basis-1/2 border-r'>
+            <div className='basis-1/2 border-r dark:border-r dark:border-gray-300'>
               <h3 className='text-2xl text-center mt-4 dark:text-gray-100'>Active Appointments</h3>
               {(appointment===undefined || appointment.length === 0) && (
-                <p className='w-96 mx-auto mt-3 h-48 grid place-items-center ring-[1px] ring-gray-300 rounded'>
+                <p className='w-96 mx-auto mt-3 h-48 grid place-items-center ring-[1px] ring-gray-300 rounded dark:text-gray-100'>
                 No any active appointment to show
               </p>
               )}
-              {(appointment !== undefined) && appointment.map(app => (
-                <ActiveAppointment appointment={app} />
+              {(appointment !== undefined) && appointment.map((app, index) => (
+                <ActiveAppointment key={index} appointment={app} />
               ))}
             </div>
-            <div className='basis-1/2 border-r'>
+            <div className='basis-1/2'>
               <h3 className='text-2xl text-center mt-4 dark:text-gray-100'>Assign Appointments</h3>
               {foundUser?.pendingAppointment.length === 0 && (
-                <p className='w-96 mx-auto mt-3 h-48 grid place-items-center ring-[1px] ring-gray-300 rounded'>
+                <p className='w-96 mx-auto mt-3 h-48 grid place-items-center ring-[1px] ring-gray-300 rounded dark:text-gray-100'>
                   No any pending appointment to show
                 </p>
               )}

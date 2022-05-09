@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar, Navigation, A11y } from "swiper";
 import { HeartIcon } from "@heroicons/react/solid";

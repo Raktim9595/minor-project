@@ -64,7 +64,7 @@ const Details = () => {
     sortByRooms(propertyDetails, rooms);
     filterCategory(a, category);
   } else if (category && price) {
-    filterCategory(a, category);
+    filterCategory(propertyDetails, category);
     filterPrice(a, price);
   } else if (rooms && price) {
     sortByRooms(propertyDetails, rooms);

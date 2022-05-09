@@ -18,7 +18,7 @@ const Home = () => {
       }
     };
     getAllProperties();
-  }, []);
+  }, [dispatch]);
 
   const home = propertyDetails?.filter(a => a.category === "house")
   const rooms = propertyDetails?.filter(a => a.category === "room")
@@ -32,11 +32,11 @@ const Home = () => {
           <main className='mt-3'>
             <div className='mx-5 rounded-md shadow-md px-8 py-4 dark:bg-neutral-900 dark:text-gray-50 bg-white'>
               <div>
-                <h3 className="home--headings">special offers: </h3>
+                <h3 className="home--headings">New Properties: </h3>
                 <ImageSlider swiperData={propertyDetails.slice(0, 10)} imagesView={4} />
               </div>
               {home && (
-                <div>
+                <div className='mt-3'>
                   <h3 className="home--headings">House available: </h3>
                   <ImageSlider swiperData={home?.slice(0, 10)} imagesView={4} />
                 </div>

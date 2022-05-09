@@ -125,7 +125,7 @@ const EditProperty = () => {
 
               {/* select category  */}
               <div className='w-[55vw] mx-auto mb-4 flex space-x-10 items-end mt-5'>
-                <p>delete a property</p>
+                <p className='text-2xl w-max mx-auto'>Edit a property</p>
               </div>
 
               {/* main form for adding new property into the database  */}

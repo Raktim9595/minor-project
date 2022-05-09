@@ -22,7 +22,7 @@ const ProfileInfo = () => {
     if (currentUser) {
       getUser();
     }
-  }, [currentUser]);
+  }, []);
   console.log(user);
   return (
     <div>
@@ -30,9 +30,9 @@ const ProfileInfo = () => {
       <main className='flex items-center'>
         <ProfileSidebar user={currentUser} />
         {user !== undefined ? (
-          <div className='w-[1120px] ml-64 min-h-[90vh] bg-white shadow-inner ring-[1px] ring-gray-300 dark:ring-gray-700 dark:bg-neutral-800 dark:text-gray-100'>
+          <div className='w-[1120px] ml-64 min-h-[90vh] bg-white shadow-inner ring-[1px] ring-gray-300 dark:ring-gray-700 dark:bg-neutral-800 dark:text-gray-100 self-start'>
             <h4 className='w-max mx-auto text-2xl mt-3'>Welcome {currentUser.username}</h4>
-            <div className="flex mt-8 items-center">
+            <div className="flex mt-8 items-start">
               <div className="basis-1/2 border-[2px] rounded-md mx-4 border-gray-300">
                 <div className='w-max mx-auto my-4'>
                   <img className='h-36 object-contain' src={currentUser.images[0].url} alt={currentUser.username} />

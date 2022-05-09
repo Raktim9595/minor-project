@@ -1,8 +1,11 @@
 import React from 'react';
 import { PhotographIcon } from '@heroicons/react/outline';
+import { useDispatch } from 'react-redux';
+
+import { setModal } from '../store/utilitiesSlice';
 
 const DetailPageImages = ({ image, imageTitle }) => {
-  console.log(image);
+  const dispatch = useDispatch();
   return (
     <div className='grid grid-rows-4 grid-cols-4 gap-2 h-[21.5rem]'>
       {image.map((img, index) => (
@@ -14,7 +17,7 @@ const DetailPageImages = ({ image, imageTitle }) => {
           {index === 4 && (
             <>
               <button className='absolute right-4 bottom-3 images-more-btn'>
-                <div className="flex space-x-2 items-center">
+                <div onClick={() => dispatch(setModal())} className="flex space-x-2 items-center">
                   <PhotographIcon className='h-5 w-5' />
                   <p className='text-sm'>Show all Photos</p>
                 </div>

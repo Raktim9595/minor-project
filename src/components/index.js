@@ -19,3 +19,4 @@ export { default as Sidebar } from "./Sidebar";
 export { default as ProfileSidebar } from "./ProfileSidebar";
 export { default as UpdateUser } from "./UpdateUser";
 export { default as SetAppointmentBox } from "./SetAppointmentBox";
+export { default as ImageModal } from "./ImageModal";
