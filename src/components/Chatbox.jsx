@@ -60,9 +60,10 @@ const Chatbox = ({ propertyDetails, appointment }) => {
         </div>
       )}
       {!currentUser && (
-        <div className='-mt-10'>
+        <div className='mt-5 w-max mx-auto'>
+          <p>Request appointment</p>
           <Link to="/register">
-            <p className='mt-16 ml-10 green--btn w-max'>Please login first</p>
+            <p className='green--btn w-max'>Please login first</p>
           </Link>
         </div>
       )}

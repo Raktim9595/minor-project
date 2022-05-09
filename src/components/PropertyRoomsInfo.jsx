@@ -8,7 +8,7 @@ const PropertyRoomsInfo = ({ area, halls, rooms }) => {
         <ArrowsExpandIcon className='h-7 w-7 text-gray-800 dark:text-gray-300' />
         <div className='flex flex-col'>
           <p>Area</p>
-          <p>{area} <span>Sq. Km</span></p>
+          <p>{area} <span>Sq. feet</span></p>
         </div>
       </div>
       <div className='flex items-center space-x-3'>
